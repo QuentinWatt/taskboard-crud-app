@@ -7,13 +7,13 @@ We really enjoyed meeting you in our first interview.
 
 Before moving onto our next hiring phase, which would be meeting our more technical team, we would like to test your abilities.
 
-We’d like to ask you to perform the task below. The task is not meant to trip you up, but rather just to assess if you can do the basics expected from a senior developer within an appropriate time frame.
+We’d like to ask you to perform the task below. The task is not meant to trip you up, but to assess if you can do the basics expected from a senior developer within an appropriate time frame.
 
 ## **Task: Laravel + Vue.js Assessment**
 
 Using Laravel and VueJS, build a single page application and API that has both user registration and authentication component, the authentication needs to make use of Laravel Sanctum Tokens.
 
-Create a task list CRUD component for the single page application, the component should consist of the following:
+Create a task list CRUD component for the single page application. The component should consist of the following:
 
 - List Tasks
 - View Task
@@ -21,7 +21,9 @@ Create a task list CRUD component for the single page application, the component
 - Update Task
 - Delete Task
 
-Tasks should belong to the user that is logged in, be sure to implement proper authorisation between users and tasks.
+Tasks should belong to the user that is logged in. Be sure to implement proper authorisation between users and tasks so that tasks can only be managed by the user to whom they belong.
+
+Unit tests that cover the user and task management functionality are required.
 
 Your knowledge of the following components will be assessed:
 
@@ -36,6 +38,10 @@ Your knowledge of the following components will be assessed:
 - Migrations
 - Form Requests
 - Authorisation
+
+**PHPUnit**
+
+- Unit testing
 
 **VueJS**
 
