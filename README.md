@@ -46,7 +46,7 @@ Your knowledge of the following components will be assessed:
 **VueJS**
 
 - Routing
-- Vuex state management
+- Pinia state management
 - Axios
 
 **Bonus Points**
