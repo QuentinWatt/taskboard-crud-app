@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\Task;
 use App\Models\Board;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -84,6 +85,31 @@ class TaskTest extends TestCase
         $response->assertJsonFragment([
             'title' => 'Test Task',
             'is_completed' => false
+        ]);
+    }
+
+    public function test_it_can_delete_a_task(): void
+    {
+        $board = Board::factory()->create();
+        $task = Task::factory()->create([
+            'title' => 'A task to delete',
+            'board_id' => $board->id,
+        ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            'title' => 'A task to delete',
+            'board_id' => $board->id,
+        ]);
+
+        $response = $this->deleteJson('/api/board/' . $board->id . '/task/' . $task->id);
+
+        $response->assertOk();
+
+        $this->assertDatabaseMissing('tasks', [
+            'id' => $task->id,
+            'title' => 'A task to delete',
+            'board_id' => $board->id,
         ]);
     }
 }

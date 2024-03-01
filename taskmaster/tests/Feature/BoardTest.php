@@ -16,7 +16,7 @@ class BoardTest extends TestCase
     {
         $board = Board::factory()->create();
 
-        $response = $this->get('/api/board/' . $board->id);
+        $response = $this->getJson('/api/board/' . $board->id);
 
         $response->assertStatus(200);
     }
@@ -28,7 +28,7 @@ class BoardTest extends TestCase
     {
         $board = Board::factory()->create();
 
-        $response = $this->get('/api/board/' . $board->id);
+        $response = $this->getJson('/api/board/' . $board->id);
 
         $response->assertJsonIsObject('data');
 

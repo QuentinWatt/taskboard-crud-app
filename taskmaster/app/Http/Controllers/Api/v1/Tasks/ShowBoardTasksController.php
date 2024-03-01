@@ -8,7 +8,7 @@ use App\Http\Resources\v1\Tasks\TaskResourceCollection;
 
 class ShowBoardTasksController extends Controller
 {
-    public function __invoke(Board $board)
+    public function __invoke(Board $board): TaskResourceCollection
     {
         return new TaskResourceCollection($board->tasks);
     }

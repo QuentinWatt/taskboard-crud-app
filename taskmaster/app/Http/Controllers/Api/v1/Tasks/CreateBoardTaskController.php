@@ -10,7 +10,7 @@ use App\Models\Board;
 
 class CreateBoardTaskController extends Controller
 {
-    public function __invoke(CreateTaskRequest $request, Board $board)
+    public function __invoke(CreateTaskRequest $request, Board $board): TaskResource
     {
         $task = Task::create([
             'title' => $request->input('title'),

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\Boards\ShowBoardController;
 use App\Http\Controllers\Api\v1\Boards\ShowBoardsController;
 use App\Http\Controllers\Api\v1\Tasks\CreateBoardTaskController;
+use App\Http\Controllers\Api\v1\Tasks\DeleteBoardTaskController;
 use App\Http\Controllers\Api\v1\Tasks\ShowBoardTasksController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,6 @@ Route::prefix('board')->group(function () {
 
         Route::get('/tasks', ShowBoardTasksController::class)->name('board.tasks.show');
         Route::post('/task/new', CreateBoardTaskController::class)->name('board.task.create');
+        Route::delete('/task/{task}', DeleteBoardTaskController::class)->name('board.task.create');
     });
 });
