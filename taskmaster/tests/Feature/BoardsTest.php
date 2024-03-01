@@ -13,14 +13,14 @@ class BoardsTest extends TestCase
      */
     public function test_it_has_boards_route(): void
     {
-        $response = $this->get('/api/boards');
+        $response = $this->getJson('/api/boards');
 
         $response->assertStatus(200);
     }
 
     public function test_it_returns_a_paginated_response(): void
     {
-        $response = $this->get('/api/boards');
+        $response = $this->getJson('/api/boards');
 
         $response->assertJsonStructure([
             'data' => [],
@@ -30,7 +30,7 @@ class BoardsTest extends TestCase
 
     public function test_it_has_board_key_properties(): void
     {
-        $response = $this->get('/api/boards');
+        $response = $this->getJson('/api/boards');
 
         $response->assertJsonStructure([
             'data' => [
