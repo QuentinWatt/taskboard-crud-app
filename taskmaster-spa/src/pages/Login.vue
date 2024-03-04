@@ -7,9 +7,9 @@
   const router = useRouter()
 
   const state = reactive({
-    email: '',
-    password: '',
-    loading: false,
+    email: '' as string,
+    password: '' as string,
+    loading: false as boolean,
   })
 
   const authStore = useAuthStore()
@@ -42,12 +42,18 @@
             v-model="state.email" 
             type="email" 
             id="email"
+            placeholder="Your email"
           /> 
         </div>
 
         <div class="mb-3">
           <label for="password">Password</label>
-          <input v-model="state.password" type="password" id="password" /> 
+          <input 
+            v-model="state.password" 
+            type="password" 
+            id="password" 
+            placeholder="Your password"
+          /> 
         </div>
 
         <div>

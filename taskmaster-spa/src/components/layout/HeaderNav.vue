@@ -14,10 +14,13 @@
     
       <nav>
         <ul class="flex items-center">
-          <li class="mr-5" v-if="!authStore.isLoggedIn">
+          <li v-if="!authStore.isLoggedIn" class="mr-5">
             <router-link to="/login">Login</router-link>
           </li>
-          <li class="mr-5" v-if="authStore.isLoggedIn">
+          <li v-if="!authStore.isLoggedIn" class="mr-5">
+            <router-link to="/sign-up">Sign Up</router-link>
+          </li>
+          <li v-if="authStore.isLoggedIn" class="mr-5">
             <LogoutForm />
           </li>
         </ul>
