@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Tasks;
+namespace App\Http\Requests\v1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTaskRequest extends FormRequest
+class UpdateTaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class CreateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255|min:1',
-            'is_completed' => 'sometimes|boolean',
+            'title' => 'required|string|min:1|max:120',
+            'is_completed' => 'required|boolean',
         ];
     }
 }

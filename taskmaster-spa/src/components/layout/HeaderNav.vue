@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <header class="border-b h-16 flex items-center bg-white">
+  <header class="border-b h-16 flex items-center bg-white px-3">
     <div class="flex items-center justify-between container mx-auto">
       <span class="font-bold text-3xl">Taskmasker</span>
     
@@ -12,8 +12,8 @@
             <router-link to="/">Home</router-link>
           </li>
           <li>
-            <router-link to="/tasks">
-              Tasks
+            <router-link to="/boards">
+              Boards
             </router-link>
           </li>
         </ul>

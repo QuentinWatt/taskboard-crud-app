@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
-import Tasks from "../pages/Tasks.vue";
+import Board from "../pages/Board.vue";
+import Boards from "../pages/Boards.vue";
 
 const routes = [
   {
@@ -8,8 +9,12 @@ const routes = [
     component: Home,
   },
   {
-    path: "/tasks",
-    component: Tasks,
+    path: "/boards/",
+    component: Boards,
+  },
+  {
+    path: "/board/:boardId",
+    component: Board,
   },
 ];
 
