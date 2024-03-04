@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ];
 
         collect($users)->each(function ($user) {
-            User::factory()->create();
+            User::factory()->create($user);
         });
     }
 }

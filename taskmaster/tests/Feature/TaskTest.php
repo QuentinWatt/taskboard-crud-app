@@ -2,18 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Task;
 use App\Models\Board;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\AuthTestCase;
 
-class TaskTest extends TestCase
+class TaskTest extends AuthTestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_it_has_validation_on_an_empty_title(): void
+    public function testItHasValidationForEmptyValues(): void
     {
         $board = Board::factory()->create();
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
@@ -32,7 +27,7 @@ class TaskTest extends TestCase
         ]);
     }
 
-    public function test_it_has_validation_on_a_false_value(): void
+    public function testItHasValidationForTrueOrFalseValues(): void
     {
         $board = Board::factory()->create();
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
@@ -52,7 +47,7 @@ class TaskTest extends TestCase
         ]);
     }
 
-    public function test_it_has_validation_on_long_value(): void
+    public function testItHasValidationForALongValue(): void
     {
         $board = Board::factory()->create();
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
@@ -73,7 +68,7 @@ class TaskTest extends TestCase
         ]);
     }
 
-    public function test_it_creates_a_task(): void
+    public function testItCreatesATask(): void
     {
         $board = Board::factory()->create();
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
@@ -88,7 +83,7 @@ class TaskTest extends TestCase
         ]);
     }
 
-    public function test_it_can_delete_a_task(): void
+    public function testItCanDeleteATask(): void
     {
         $board = Board::factory()->create();
         $task = Task::factory()->create([
@@ -104,7 +99,7 @@ class TaskTest extends TestCase
 
         $response = $this->deleteJson('/api/board/' . $board->id . '/task/' . $task->id);
 
-        $response->assertOk();
+        $response->assertStatus(204);
 
         $this->assertDatabaseMissing('tasks', [
             'id' => $task->id,
@@ -113,7 +108,7 @@ class TaskTest extends TestCase
         ]);
     }
 
-    public function test_it_has_validation_for_updates(): void
+    public function testItHasValidationForUpdates(): void
     {
         $board = Board::factory()->create();
         $task = Task::factory()->create([

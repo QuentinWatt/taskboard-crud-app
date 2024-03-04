@@ -13,6 +13,6 @@ class DeleteBoardTaskController extends Controller
     {
         $task->delete();
 
-        return response()->json(null, 200);
+        return response()->json(null, 204);
     }
 }
