@@ -112,4 +112,29 @@ class TaskTest extends TestCase
             'board_id' => $board->id,
         ]);
     }
+
+    public function test_it_has_validation_for_updates(): void
+    {
+        $board = Board::factory()->create();
+        $task = Task::factory()->create([
+            'title' => 'A task to delete',
+            'board_id' => $board->id,
+        ]);
+
+        $response = $this->putJson('/api/board/' . $board->id . '/task/' . $task->id, [
+            'title' => null,
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJsonFragment([
+                'errors' => [
+                    'title' => [
+                        'The title field is required.'
+                    ],
+                    'is_completed' => [
+                        'The is completed field is required.'
+                    ],
+                ]
+            ]);
+    }
 }
