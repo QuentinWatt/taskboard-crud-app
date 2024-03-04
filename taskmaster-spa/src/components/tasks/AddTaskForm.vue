@@ -77,4 +77,8 @@
   position: relative;
   animation: shake 0.3s ease-in-out 0s 3;
 }
+
+input {
+  @apply border-0;
+}
 </style>

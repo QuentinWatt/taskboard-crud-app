@@ -54,5 +54,9 @@
     .task {
       @apply flex items-center border bg-white rounded p-2;
     }
+
+    .task input {
+      @apply border-0;
+    }
   }
 </style>

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api\v1\Tasks;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\v1\UpdateTaskRequest;
+use App\Http\Requests\v1\Tasks\UpdateTaskRequest;
 use App\Http\Resources\v1\Tasks\TaskResource;
 use App\Models\Board;
 use App\Models\Task;

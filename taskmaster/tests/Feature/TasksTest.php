@@ -2,15 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Task;
 use App\Models\Board;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\AuthTestCase;
 
-class TasksTest extends TestCase
+class TasksTest extends AuthTestCase
 {
-    public function test_it_has_a_tasks_endpoint(): void
+    public function testItHasATasksEndpoint(): void
     {
         $board = Board::factory()->create();
 
@@ -19,7 +17,7 @@ class TasksTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_it_returns_a_list_of_tasks(): void
+    public function testItReturnsAListOfTasks(): void
     {
         $board = Board::factory()->create();
 

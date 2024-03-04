@@ -2,17 +2,12 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\Board;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\AuthTestCase;
 
-class BoardTest extends TestCase
+class BoardTest extends AuthTestCase
 {
-    /**
-     * A test that the board endpoint is found
-     */
-    public function test_it_has_board_route(): void
+    public function testItHasABoardRoute(): void
     {
         $board = Board::factory()->create();
 
@@ -21,10 +16,7 @@ class BoardTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /**
-     * A test that the board endpoint is found
-     */
-    public function test_it_has_board_data(): void
+    public function testItHasBoardData(): void
     {
         $board = Board::factory()->create();
 

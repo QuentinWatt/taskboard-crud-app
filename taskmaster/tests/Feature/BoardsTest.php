@@ -2,23 +2,18 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Tests\AuthTestCase;
 
-class BoardsTest extends TestCase
+class BoardsTest extends AuthTestCase
 {
-    /**
-     * A test that the boards endpoint is found
-     */
-    public function test_it_has_boards_route(): void
+    public function testAuthorizedUsersCanAccessTheBoardsRoute(): void
     {
         $response = $this->getJson('/api/boards');
 
         $response->assertStatus(200);
     }
 
-    public function test_it_returns_a_paginated_response(): void
+    public function testItReturnsAPaginatedResponse(): void
     {
         $response = $this->getJson('/api/boards');
 
@@ -28,7 +23,7 @@ class BoardsTest extends TestCase
         ]);
     }
 
-    public function test_it_has_board_key_properties(): void
+    public function testItHasBoardProperties(): void
     {
         $response = $this->getJson('/api/boards');
 
