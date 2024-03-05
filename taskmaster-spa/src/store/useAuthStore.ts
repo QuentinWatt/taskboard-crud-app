@@ -37,7 +37,12 @@ export const useAuthStore = defineStore("auth", {
       this.token = token;
     },
     async getUser() {
-      // Todo: fetch user
+      try {
+        const response = await taskApi.get("/auth/user");
+        this.user = response.data.data;
+      } catch (e: any) {
+        this.errors = ["Couldn't fetch your user"];
+      }
     },
     async logout() {
       try {

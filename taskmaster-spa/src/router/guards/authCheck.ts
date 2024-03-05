@@ -12,6 +12,7 @@ export const authCheck = () => {
   if (token) {
     store.setToken(token);
     setBearerToken(token);
+    store.getUser();
   } else {
     return "/login";
   }
