@@ -5,22 +5,21 @@ use App\Http\Controllers\Api\v1\Auth\LogoutController;
 use App\Http\Controllers\Api\v1\Auth\SignupController;
 use App\Http\Controllers\Api\v1\Boards\ShowBoardController;
 use App\Http\Controllers\Api\v1\Boards\ShowBoardsController;
+use App\Http\Controllers\Api\v1\Auth\ShowAuthUserController;
 use App\Http\Controllers\Api\v1\Tasks\CreateBoardTaskController;
 use App\Http\Controllers\Api\v1\Tasks\DeleteBoardTaskController;
 use App\Http\Controllers\Api\v1\Tasks\ShowBoardTasksController;
 use App\Http\Controllers\Api\v1\Tasks\UpdateBoardTaskController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 Route::prefix('/auth')->group(function () {
     Route::post('/signup', SignupController::class);
     Route::post('/login', LoginController::class);
-    Route::post('/logout', LogoutController::class)->middleware('auth:sanctum');
-});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/logout', LogoutController::class);
+        Route::get('/user', ShowAuthUserController::class);
+    });
 });
 
 /**
