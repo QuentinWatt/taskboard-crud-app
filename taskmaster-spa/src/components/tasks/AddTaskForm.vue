@@ -51,7 +51,7 @@
         type="submit"
         class="button bg-green-500 hover:bg-green-600"
       >
-        Add
+        <font-awesome-icon :icon="['fas', 'circle-plus']" />
       </button>
     </div>
   </form>

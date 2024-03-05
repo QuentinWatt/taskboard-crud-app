@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply min-w-24 flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-3 rounded py-1 text-white;
+    @apply min-w-24 flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-3 rounded py-2 text-white;
   }
 
   input {
