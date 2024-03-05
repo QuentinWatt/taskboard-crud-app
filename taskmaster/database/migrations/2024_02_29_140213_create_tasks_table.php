@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->boolean('is_completed')->default(false);
-            $table->foreignId('board_id')->references('id')->on('boards');
+            $table->foreignId('board_id')->references('id')->on('boards')->onDelete('cascade');
             $table->timestamps();
         });
     }

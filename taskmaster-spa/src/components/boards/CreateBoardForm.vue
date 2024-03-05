@@ -2,6 +2,8 @@
   import { reactive } from 'vue';
   import { useBoardsStore } from '../../store/useBoardsStore';
   import Loader from '../utils/Loader.vue';
+  import Alert from "../utils/Alert.vue"
+  import FormError from "../utils/FormError.vue"
 
   const boardsStore = useBoardsStore();
 
@@ -21,7 +23,12 @@
   <form 
     @submit.prevent="createBoard"
     class="bg-gray-200 p-3 rounded-md"
+    :class="boardsStore.hasCreateError ? 'error' : ''"
   >
+    <Alert v-if="boardsStore.hasCreateError">
+      {{ boardsStore.createErrorMessage }}
+    </Alert>
+
     <div class="w-full">
       <label for="board_name">New board</label>
       <input 
@@ -31,6 +38,11 @@
         placeholder="A new board"
         class="bg-white"
       >
+      <FormError
+        v-if="boardsStore.nameError"
+      >
+        {{ boardsStore.nameError }}
+      </FormError>
     </div>
     <div>
       <button class="button mt-3">
@@ -40,3 +52,25 @@
     </div>
   </form>
 </template>
+
+<style scoped>
+@keyframes shake {
+  0% {
+    left: 0rem;
+  }
+  25% {
+    left: 0.5rem;
+  }
+  75% {
+    left: -0.5rem;
+  }
+  100% {
+    left: 0rem;
+  }
+}
+
+.error {
+  position: relative;
+  animation: shake 0.3s ease-in-out 0s 3;
+}
+</style>

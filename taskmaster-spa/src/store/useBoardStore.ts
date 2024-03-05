@@ -14,7 +14,6 @@ export const useBoardStore = defineStore("board", {
       try {
         const response = await taskApi.get(`/board/${boardId}`);
         this.board = response.data.data;
-
         if (this.board !== null) {
           this.getTasks();
         }
@@ -56,7 +55,7 @@ export const useBoardStore = defineStore("board", {
     },
     async deleteTask(task: Task) {
       try {
-        taskApi.delete(`/board/${this.board?.id}/task/${task.id}`);
+        await taskApi.delete(`/board/${this.board?.id}/task/${task.id}`);
         this.tasks = this.tasks.filter((item) => item.id !== task.id);
       } catch (e: any) {
         this.errors = ["Could not delete that task."];
