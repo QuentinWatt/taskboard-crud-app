@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { taskApi } from "../config/taskApi";
 import User from "../models/User";
 import SignupCredentials from "../models/SignupCredentials";
-import SignupErrors from "../models/SignupErrors";
+import SignupErrors from "../models/errors/SignupErrors";
 
 export const useSignupStore = defineStore("signup", {
   state: () => ({
