@@ -9,7 +9,6 @@
   }
   
   const props = defineProps<DeleteFormProps>()
-  console.log(props)
   const router = useRouter();
 
   const state = reactive({
