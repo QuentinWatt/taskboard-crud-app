@@ -10,7 +10,10 @@ class TaskTest extends AuthTestCase
 {
     public function testItHasValidationForEmptyValues(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
+
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
             'title' => null,
         ]);
@@ -29,7 +32,10 @@ class TaskTest extends AuthTestCase
 
     public function testItHasValidationForTrueOrFalseValues(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
+
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
             'title' => false,
         ]);
@@ -49,7 +55,10 @@ class TaskTest extends AuthTestCase
 
     public function testItHasValidationForALongValue(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
+
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
             'title' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, quis. Quos minus aspernatur perferendis unde vero? Voluptas inventore totam consequatur neque debitis quasi ratione nostrum facilis, reprehenderit vitae ab distinctio.
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, quis. Quos minus aspernatur perferendis unde vero? Voluptas inventore totam consequatur neque debitis quasi ratione nostrum facilis, reprehenderit vitae ab distinctio.
@@ -70,7 +79,10 @@ class TaskTest extends AuthTestCase
 
     public function testItCreatesATask(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
+
         $response = $this->postJson('/api/board/' . $board->id . '/task/new', [
             'title' => 'Test Task',
         ]);
@@ -85,7 +97,10 @@ class TaskTest extends AuthTestCase
 
     public function testItCanDeleteATask(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
+
         $task = Task::factory()->create([
             'title' => 'A task to delete',
             'board_id' => $board->id,
@@ -110,7 +125,10 @@ class TaskTest extends AuthTestCase
 
     public function testItHasValidationForUpdates(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
+
         $task = Task::factory()->create([
             'title' => 'A task to delete',
             'board_id' => $board->id,

@@ -10,7 +10,9 @@ class TasksTest extends AuthTestCase
 {
     public function testItHasATasksEndpoint(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
 
         $response = $this->get('api/board/' . $board->id . '/tasks');
 
@@ -19,7 +21,9 @@ class TasksTest extends AuthTestCase
 
     public function testItReturnsAListOfTasks(): void
     {
-        $board = Board::factory()->create();
+        $board = Board::factory()->create([
+            'user_id' => $this->user->id
+        ]);
 
         Task::factory(5)->create([
             'board_id' => $board->id

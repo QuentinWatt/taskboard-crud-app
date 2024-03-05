@@ -16,5 +16,15 @@ export const useBoardsStore = defineStore("boards", {
         this.errors = ["Oops! Looks like we couldn't fetch the board data."];
       }
     },
+    async createBoard(name: string) {
+      try {
+        const reponse = await taskApi.post(`/board/new`, {
+          name,
+        });
+        this.getBoards();
+      } catch (e: any) {
+        this.errors = ["Oops! Looks like we couldn't fetch the board data."];
+      }
+    },
   },
 });
