@@ -40,7 +40,7 @@
         @click="boardStore.deleteTask(state.task)"
         class="button bg-red-500 hover:bg-red-600 "
       >
-        Delete
+        <font-awesome-icon :icon="['fas', 'trash']" />
       </button>
     </div>
   </div>
