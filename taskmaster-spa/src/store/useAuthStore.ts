@@ -9,7 +9,6 @@ import {
   clearTokenCookie,
   storeTokenCookie,
 } from "../helpers/auth/cookieHelper";
-import { useRouter } from "vue-router";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
