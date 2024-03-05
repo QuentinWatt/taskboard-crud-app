@@ -49,25 +49,6 @@ export const useAuthStore = defineStore("auth", {
         this.errors = ["Had trouble logging you out."];
       }
     },
-    async signup({
-      name,
-      email,
-      password,
-    }: {
-      name: string;
-      email: string;
-      password: string;
-    }) {
-      try {
-        await taskApi.post("/auth/signup", {
-          name,
-          email,
-          password,
-        });
-      } catch (e: any) {
-        this.errors = ["Could not create your account."];
-      }
-    },
   },
   getters: {
     isLoggedIn(state): boolean {
