@@ -1,0 +1,42 @@
+variables:
+  DOCKER_IMAGE_NAME: "node:18-alpine"
+  DOCKERFILE_PATH: "./"
+
+stages:
+  - test
+  - build
+  - deploy
+
+tests:
+  stage: test
+  image: "$DOCKER_IMAGE_NAME"
+  script:
+    - echo "This would run vue tests"
+
+build:
+  stage: build
+  image: "$DOCKER_IMAGE_NAME"
+  script:
+    - npm install -g pnpm
+    - cd taskmaster-spa
+    - pnpm install
+    - pnpm run build
+  artifacts:
+    paths:
+      - dist/
+  only:
+    - main
+    - staging
+    - dev
+
+deploy:
+  stage: deploy
+  script:
+    - echo "This is a fake deployment"
+  dependencies:
+    - build
+  only:
+    - main
+    - staging
+    - dev
+  when: manual
