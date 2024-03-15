@@ -1,15 +1,8 @@
-# **IO Developer Test: Full Stack (Senior)**
+# ** CRUD Task Board Application **
 
+This application was originally written as part of a job assessment. The assessment spec is written blow. 
 
-Dear Developer,
-
-We really enjoyed meeting you in our first interview.
-
-Before moving onto our next hiring phase, which would be meeting our more technical team, we would like to test your abilities.
-
-We’d like to ask you to perform the task below. The task is not meant to trip you up, but to assess if you can do the basics expected from a senior developer within an appropriate time frame.
-
-## **Task: Laravel + Vue.js Assessment**
+## **Task: Laravel + Vue.js Assessment Spec**
 
 Using Laravel and VueJS, build a single page application and API that has both user registration and authentication component, the authentication needs to make use of Laravel Sanctum Tokens.
 
@@ -55,14 +48,4 @@ Your knowledge of the following components will be assessed:
 - Dockerfile
 - Docker Compose
 
-## **Allocated Time**
 
-We would like to see the task completed in 2 - 3 days. If you need more time, please do let us know via email at hr@io.co.za. 
-
----
-
-Thank you for the time investment you are willing to make in order to help us understand your abilities, work ethics and standards.
-
-Best of luck! We are sure it will go well.
-
-**Liesel & the IO team**
