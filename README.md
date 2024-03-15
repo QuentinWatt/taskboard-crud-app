@@ -1,8 +1,8 @@
-# ** CRUD Task Board Application **
+# CRUD Task Board Application
 
 This application was originally written as part of a job assessment. The assessment spec is written blow. 
 
-## **Task: Laravel + Vue.js Assessment Spec**
+## Task: Laravel + Vue.js Assessment Spec
 
 Using Laravel and VueJS, build a single page application and API that has both user registration and authentication component, the authentication needs to make use of Laravel Sanctum Tokens.
 
