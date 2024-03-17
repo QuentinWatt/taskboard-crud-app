@@ -1,0 +1,31 @@
+name: Docker Compose Build and Test
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      - name: Build and run Docker Compose
+        run: |
+          docker-compose up -d
+
+      - name: Run migrations
+        run: |
+          docker compose exec laravel_app bash -c "php artisan migrate:fresh --seed"
+
+      - name: Run tests
+        run: |
+          docker compose exec laravel_app bash -c "php artisan test"
