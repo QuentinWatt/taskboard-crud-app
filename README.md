@@ -1,6 +1,6 @@
 # CRUD Task Board Application
 
-This application was originally written as part of a job assessment. The assessment spec is written blow. 
+This application was originally written as part of a job assessment. The assessment spec is written blow.
 
 ## Task: Laravel + Vue.js Assessment Spec
 
@@ -47,5 +47,3 @@ Your knowledge of the following components will be assessed:
 - CI/CD
 - Dockerfile
 - Docker Compose
-
-

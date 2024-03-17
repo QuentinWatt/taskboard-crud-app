@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  vue3_spa:
+    container_name: vue3_spa
+    build:
+      context: ./taskmaster-spa
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081" 
+    networks:
+      - app_network
+
+  laravel_app:
+    container_name: laravel_app
+    build:
+      context: ./taskmaster
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - taskmaster_db 
+    networks:
+      - app_network
+
+  db:
+    container_name: taskmaster_db
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: taskmaster
+    ports:
+      - "3307:3306"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
