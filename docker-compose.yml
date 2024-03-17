@@ -19,7 +19,7 @@ services:
     ports:
       - "8000:80"
     depends_on:
-      - taskmaster_db 
+      - db 
     networks:
       - app_network
 
