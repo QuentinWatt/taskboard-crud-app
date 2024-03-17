@@ -15,7 +15,7 @@ jobs:
 
       - name: Copy Environment
         run: |
-          cp .env.example .env
+          cp ./taskmaster/.env.example ./taskmaster/.env
 
       - name: Set up Docker Compose
         run: |
