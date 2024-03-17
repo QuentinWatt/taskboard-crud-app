@@ -26,6 +26,10 @@ jobs:
         run: |
           docker-compose up -d
 
+      - name: Examine env
+        run: |
+          docker compose exec laravel_app bash -c "cat .env"
+
       - name: Run migrations
         run: |
           docker compose exec laravel_app bash -c "php artisan migrate:fresh --seed"
