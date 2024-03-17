@@ -28,7 +28,7 @@ jobs:
 
       - name: Test db connection
         run: |
-          docker compose exec taskmaster_db bash -c "mysql -u root -ppassword -h localhost -P 3306"
+          docker compose exec db bash -c "mysql -u root -ppassword -h localhost -P 3306"
 
       - name: Run migrations
         run: |
