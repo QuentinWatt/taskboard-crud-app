@@ -26,9 +26,9 @@ jobs:
         run: |
           docker-compose up -d
 
-      - name: Examine env
+      - name: Test db connection
         run: |
-          docker compose exec laravel_app bash -c "cat .env"
+          docker compose exec taskmaster_db bash -c "mysql -u root -ppassword -h localhost -P 3306"
 
       - name: Run migrations
         run: |
