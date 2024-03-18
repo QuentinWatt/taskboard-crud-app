@@ -28,7 +28,7 @@ jobs:
 
       - name: Check MySQL Socket
         run: |
-          docker exec mysql-container bash -c 'ls -l /var/run/mysqld/'
+          docker exec taskmaster_db bash -c 'ls -l /var/run/mysqld/'
 
       - name: Test db connection
         run: |
