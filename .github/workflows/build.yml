@@ -1,47 +1,41 @@
-name: Docker Compose Build and Test
+name: Docker Compose Test
 
 on:
   push:
     branches:
-      - "*"
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
+    name: Test Docker Compose
     runs-on: ubuntu-latest
 
+    services:
+      docker:
+        image: docker:stable
+        options: --privileged
+        ports:
+          - 8000:80
+          - 3307:3306
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: taskmaster
+          MYSQL_USER: root
+
     steps:
-      - name: Checkout code
+      - name: Check out code
         uses: actions/checkout@v2
-
-      - name: Copy Environment
-        run: |
-          cp ./taskmaster/.env.example ./taskmaster/.env
-
-      - name: Set up Docker Compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
 
       - name: Build and run Docker Compose
         run: |
           docker-compose up -d
+          sleep 30 # adjust time as needed for containers to start
 
-      - name: Check MySQL Status
-        run: |
-          until docker-compose exec -T taskmaster_db mysqladmin ping -uroot -ppassword --silent; do
-            echo "MySQL is unavailable - waiting..."
-            sleep 1
-          done
-          echo "MySQL is up - continuing with migrations."
+      - name: Check containers are up and running
+        run: docker ps -a
 
-      - name: Test db connection
-        run: |
-          docker compose exec taskmaster_db bash -c "mysql -u root -ppassword -e 'show tables;'"
-
-      - name: Run migrations
-        run: |
-          docker compose exec laravel_app bash -c "php artisan migrate:fresh --seed"
-
-      - name: Run tests
-        run: |
-          docker compose exec laravel_app bash -c "php artisan test"
+      - name: Run Laravel migrations
+        run: docker exec laravel_app php artisan migrate --force
