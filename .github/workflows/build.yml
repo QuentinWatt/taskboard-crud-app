@@ -26,11 +26,14 @@ jobs:
         run: |
           docker-compose up -d
 
+      - name: Check MySQL Socket
+        run: |
+          docker exec mysql-container bash -c 'ls -l /var/run/mysqld/'
+
       - name: Test db connection
         run: |
-          docker compose ps -a
-          docker compose exec taskmaster_db bash "mysql -u root -ppassword"
-          show tables;
+          docker-compose ps -a
+          docker-compose exec taskmaster_db bash -c "mysql -u root -ppassword -e 'show tables;'"
 
       - name: Run migrations
         run: |
