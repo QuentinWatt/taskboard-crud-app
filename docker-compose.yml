@@ -37,6 +37,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: taskmaster
+      MYSQL_USER: root
     ports:
       - "3307:3306"
     networks:

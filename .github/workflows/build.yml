@@ -28,7 +28,7 @@ jobs:
 
       - name: Test db connection
         run: |
-          docker compose exec db bash -c "mysql -u root -ppassword -h localhost -P 3306" || true
+          docker-compose -ps -a
 
       - name: Run migrations
         run: |
