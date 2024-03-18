@@ -28,7 +28,9 @@ jobs:
 
       - name: Test db connection
         run: |
-          docker-compose ps -a
+          docker compose ps -a
+          docker compose exec taskmaster_db bash "mysql -u root -ppassword"
+          show tables;
 
       - name: Run migrations
         run: |

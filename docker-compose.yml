@@ -19,18 +19,18 @@ services:
     ports:
       - "8000:80"
     depends_on:
-      - db
+      - taskmaster_db
     environment:
       DB_CONNECTION: mysql
       DB_USERNAME: root
-      DB_HOST: db
+      DB_HOST: taskmaster_db
       DB_PORT: 3306
       DB_PASSWORD: password
       DB_DATABASE: taskmaster
     networks:
       - app_network
 
-  db:
+  taskmaster_db:
     container_name: taskmaster_db
     image: mysql:5.7
     restart: always
