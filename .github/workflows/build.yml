@@ -28,7 +28,7 @@ jobs:
 
       - name: Check MySQL Socket
         run: |
-          docker exec taskmaster_db service mysql status
+          docker-compose exec taskmaster_db bash -c "service mysql status"
           docker exec taskmaster_db chmod -R 777 /var/run/mysqld/
           docker exec taskmaster_db bash -c 'ls -l /var/run/mysqld/'
 
