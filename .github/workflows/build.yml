@@ -1,0 +1,44 @@
+name: Docker Compose Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test Docker Compose
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:stable
+        options: --privileged
+        ports:
+          - 8000:80
+          - 3307:3306
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: taskmaster
+          MYSQL_USER: root
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Build and run Docker Compose
+        run: |
+          docker-compose up -d
+          sleep 30 # adjust time as needed for containers to start
+
+      - name: Check containers are up and running
+        run: docker ps -a
+
+      - name: Run Laravel migrations
+        run: docker exec laravel_app php artisan migrate --force
+
+      - name: Run Laravel tests
+        run: docker exec laravel_app php artisan test
