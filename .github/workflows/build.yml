@@ -28,7 +28,7 @@ jobs:
 
       - name: Test db connection
         run: |
-          docker-compose -ps -a
+          docker-compose ps -a
 
       - name: Run migrations
         run: |
