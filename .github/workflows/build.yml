@@ -26,6 +26,10 @@ jobs:
         run: |
           docker-compose up -d
 
+      - name: Make directory writable
+        run: |
+          sudo chmod -R 777 /var/run/mysqld/mysqld.sock
+          
       - name: Test db connection
         run: |
           docker compose exec db bash -c "mysql -u root -ppassword -h localhost -P 3306"

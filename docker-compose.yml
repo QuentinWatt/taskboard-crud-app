@@ -32,7 +32,7 @@ services:
 
   db:
     container_name: taskmaster_db
-    image: mysql:latest
+    image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
