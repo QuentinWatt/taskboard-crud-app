@@ -26,11 +26,13 @@ jobs:
         run: |
           docker-compose up -d
 
-      - name: Check MySQL Socket
+      - name: Check MySQL Status
         run: |
-          docker compose exec -t taskmaster_db bash -c "service mysql status"
-          docker compose exec -t taskmaster_db chmod -R 777 /var/run/mysqld/
-          docker compose exec -t taskmaster_db bash -c 'ls -l /var/run/mysqld/'
+          until docker-compose exec -T taskmaster_db mysqladmin ping -uroot -ppassword --silent; do
+            echo "MySQL is unavailable - waiting..."
+            sleep 1
+          done
+          echo "MySQL is up - continuing with migrations."
 
       - name: Test db connection
         run: |
