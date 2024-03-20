@@ -1,9 +1,10 @@
 FROM node:18.14.2
 
-WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y xvfb libnss3 libatk1.0-0 libcups2 libgtk-3-0 libgbm1 libasound2 dbus-x11 \
+    && npm install -g pnpm
 
-RUN npm install -g pnpm
-RUN sudo apt-get update && apt-get install xvfb
+WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
