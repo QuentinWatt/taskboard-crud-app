@@ -29,11 +29,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Install Xvfb
-        run: |
-          sudo apt-get update
-          sudo apt-get install xvfb
-
       - name: Build and run Docker Compose
         run: |
           docker-compose up -d
