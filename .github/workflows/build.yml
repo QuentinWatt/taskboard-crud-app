@@ -38,7 +38,7 @@ jobs:
         run: docker ps -a
 
       - name: Front End can call a curl to the Back End
-        run: curl http://laravel_app/
+        run: docker compose exec vue3_spa curl http://laravel_app/
 
       - name: Run Laravel migrations
         run: docker exec laravel_app php artisan migrate --force
