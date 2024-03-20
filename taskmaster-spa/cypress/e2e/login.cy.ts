@@ -30,12 +30,26 @@ describe('it has a login page', () => {
   });
 
   it('Should login and redirect to the home page', () => {
+    const apiUrl = Cypress.env('apiUrl')
+    const email = 'user@taskmaster.test';
+    const password = 'password';
+
+    cy.intercept('POST', '/api/auth/login').as('loginRequest');
     cy.visit(`${baseUrl}`); 
 
-    cy.get('input[id="email"]').type('user@taskmaster.test');
-    cy.get('input[id="password"]').type('password');
+    cy.get('input[id="email"]').type(email);
+    cy.get('input[id="password"]').type(password);
 
-    cy.get('form').submit();
+    cy.get('form').submit().then(() => {
+      cy.wait('@loginRequest').then(({ request }) => {
+        expect(request.url).to.equal(`${apiUrl}api/auth/login`)
+    
+        expect(request.body).to.include({
+          email: email,
+          password: password
+        });
+      });
+    });
 
     cy.url().should('not.include', `${baseUrl}login`);
   });
