@@ -16,6 +16,9 @@ describe('it can reach the back end', () => {
       body: {
         email,
         password,
+      },
+      headers:{
+        Accept: 'appliction/json'
       }
     }).then((response) => {
       expect(response.status).to.eq(201);
