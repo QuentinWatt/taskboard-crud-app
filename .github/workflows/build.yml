@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     name: Test Docker Compose
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:23.10
 
     services:
       docker:
