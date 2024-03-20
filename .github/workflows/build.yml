@@ -25,7 +25,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: taskmaster
           MYSQL_USER: root
-          VITE_APP_API_URL: http://laravel_app
+          VITE_APP_API_URL: http://localhost:8000
 
     steps:
       - name: Check out code
@@ -45,13 +45,10 @@ jobs:
       - name: Run Laravel tests
         run: docker exec laravel_app php artisan test
 
-      - name: Rebuild Front End
-        run: |
-          docker-compose up -d --build vue3_spa
-          sleep 30 # adjust time as needed for containers to start
-
       - name: Front End can call a curl to the Back End
         run: docker compose exec vue3_spa curl http://laravel_app/api/test
+        run: docker compose exec vue3_spa curl http://localhost:8000/api/test
+        run: docker compose exec vue3_spa curl -X POST -d "email=task@taskmaster.test&password=password" http://localhost:8000/api/test
 
       - name: Run e2e tests
         run: docker exec vue3_spa pnpm cypress:run
