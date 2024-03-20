@@ -10,8 +10,5 @@ export default defineConfig({
         password: "password"
       }
     },
-    setupNodeEvents(on, config) {
-
-    },
   },
 });
