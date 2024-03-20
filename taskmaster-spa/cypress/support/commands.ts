@@ -6,12 +6,12 @@ declare namespace Cypress {
   }
 }
 
-Cypress.Commands.add('login', (username: string, password: string) => {
-  cy.visit('http://localhost:8081/login');
-  cy.get('input[id="email"]').type('user@taskmaster.test');
-  cy.get('input[id="password"]').type('password');
+Cypress.Commands.add('login', (email: string, password: string) => {
+  cy.visit(`${Cypress.config('baseUrl')}login`);
+  cy.get('input[id="email"]').type(email);
+  cy.get('input[id="password"]').type(password);
 
   cy.get('form').submit();
 
-  cy.url().should('not.eq', 'http://localhost:8081/');
+  cy.url().should('not.eq', `${Cypress.config('baseUrl')}login`);
 });
