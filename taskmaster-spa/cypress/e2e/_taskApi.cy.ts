@@ -1,16 +1,25 @@
 describe('it can reach the back end', () => {
   const apiUrl = Cypress.env('apiUrl')
+  const defaultUser = Cypress.env('defaultUser');
 
-  it('can visit the laravel app', () => {
+  it('can make a request to the laravel app.', () => {
     cy.request(`${apiUrl}api/test`).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('message', 'up');
     })
   })
 
-  it('can visit the laravel app', () => {
-    cy.visit(apiUrl).then(() => {
-      cy.contains('h2', 'Documentation').should('exist');
-    });
+  it('can make login request to the api.', () => {
+    cy.request({
+      method: "POST",
+      url: `${apiUrl}api/auth/login`,
+      body: {
+        ...defaultUser
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(201);
+      expect(response.body.data).to.have.property('token');
+      expect(response.body.data).to.have.property('user');
+    })
   })
 })
