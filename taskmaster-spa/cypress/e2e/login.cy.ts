@@ -15,13 +15,15 @@ describe('it has a login page', () => {
     cy.get('input[id="password"]').should('exist');
   });
 
-  it('Should return an error if the site', () => {
+  it('Should return an error the wrong details are used.', () => {
     cy.visit(`${baseUrl}login`); 
 
     cy.get('input[id="email"]').type('user@123.test');
     cy.get('input[id="password"]').type('12345678');
 
     cy.get('form').submit();
+
+    cy.debug()
 
     cy.contains('div', "We couldn't find an account with that email address.")
       .should('exist')

@@ -11,6 +11,8 @@ services:
     depends_on:
       - taskmaster_db
       - laravel_app
+    environment:
+      - VITE_APP_API_URL=http://laravel_app/api
     networks:
       - app_network
 
