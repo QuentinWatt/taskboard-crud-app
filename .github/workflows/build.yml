@@ -29,10 +29,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Front End Environment File
-        run: |
-          cp ./taskmaster-spa/.env.example ./taskmaster-spa/.env
-
       - name: Build and run Docker Compose
         run: |
           docker-compose up -d

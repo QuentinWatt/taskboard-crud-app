@@ -8,13 +8,24 @@ declare namespace Cypress {
 }
 
 Cypress.Commands.add('login', (email: string, password: string) => {
+  cy.intercept('POST', '/api/auth/login').as('axiosRequest');
+  
   cy.visit(`${Cypress.config('baseUrl')}login`);
   cy.get('input[id="email"]').type(email);
   cy.get('input[id="password"]').type(password);
 
   cy.get('form').submit();
 
-  cy.intercept('POST', '/auth/token').as('axiosRequest');
+  cy.debug()
+
+  cy.wait('@axiosRequest').then(({ request }) => {
+    expect(request.url).to.equal('http://localhost:8000/api/auth/login')
+
+    expect(request.body).to.include({
+      email: email,
+      password: password
+    });
+  });
 
   cy.url().should('not.eq', `${Cypress.config('baseUrl')}login`);
 });

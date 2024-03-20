@@ -12,7 +12,7 @@ services:
       - taskmaster_db
       - laravel_app
     environment:
-      - VITE_APP_API_URL=http://laravel_app/api
+      - VITE_APP_API_URL=laravel_app
     networks:
       - app_network
 
