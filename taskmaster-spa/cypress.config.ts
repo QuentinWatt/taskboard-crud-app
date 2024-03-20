@@ -4,7 +4,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:8081/",
     env: {
-      apiUrl: "http://laravel_app/",
+      apiUrl: import.meta.env.VITE_APP_API_URL,
       defaultUser: {
         email: "user@taskmaster.test",
         password: "password"

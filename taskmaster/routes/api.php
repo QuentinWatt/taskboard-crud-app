@@ -14,6 +14,12 @@ use App\Http\Controllers\Api\v1\Tasks\CreateBoardTaskController;
 use App\Http\Controllers\Api\v1\Tasks\DeleteBoardTaskController;
 use App\Http\Controllers\Api\v1\Tasks\UpdateBoardTaskController;
 
+Route::get('/test', function() {
+    return response()->json([
+        'message' => 'up'
+    ]);
+});
+
 Route::prefix('/auth')->group(function () {
     Route::post('/signup', SignupController::class);
     Route::post('/login', LoginController::class);
