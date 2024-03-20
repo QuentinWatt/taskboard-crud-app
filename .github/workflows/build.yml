@@ -42,3 +42,6 @@ jobs:
 
       - name: Run Laravel tests
         run: docker exec laravel_app php artisan test
+
+      - name: Run e2e tests
+        run: docker exec vue3_spa pnpm cyprus run

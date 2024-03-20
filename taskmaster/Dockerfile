@@ -31,6 +31,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN apt install -y nginx
 COPY nginx.conf /etc/nginx/sites-available/default
 
+# Install MySQL client
+RUN apt-get update \
+    && apt-get install -y default-mysql-client \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY start.sh /start.sh
 
 COPY . /var/www/html

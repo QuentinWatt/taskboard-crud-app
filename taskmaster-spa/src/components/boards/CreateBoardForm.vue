@@ -24,6 +24,7 @@
     @submit.prevent="createBoard"
     class="bg-gray-200 p-3 rounded-md"
     :class="boardsStore.hasCreateError ? 'error' : ''"
+    data-cy="create-board-form"
   >
     <Alert v-if="boardsStore.hasCreateError">
       {{ boardsStore.createErrorMessage }}
