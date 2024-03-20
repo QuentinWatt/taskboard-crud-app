@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Board;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\Auth\LoginController;
 use App\Http\Controllers\Api\v1\Auth\LogoutController;
@@ -33,10 +32,6 @@ Route::prefix('/auth')->group(function () {
  * Fully aware that boards and tasks can use these types of routes:
  * https://laravel.com/docs/10.x/controllers#restful-partial-resource-routes
  */
-Route::get('/test', function (){
-    dd(Board::first()->get());
-});
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/boards', ShowBoardsController::class)->name('boards.show');
 
