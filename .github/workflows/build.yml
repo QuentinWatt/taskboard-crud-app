@@ -18,12 +18,14 @@ jobs:
         image: docker:stable
         options: --privileged
         ports:
+          - 8081:8081
           - 8000:80
           - 3307:3306
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: taskmaster
           MYSQL_USER: root
+          VITE_APP_API_URL: http://laravel_app
 
     steps:
       - name: Check out code
