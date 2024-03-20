@@ -31,8 +31,7 @@ RUN apt install -y nginx
 COPY nginx.conf /etc/nginx/sites-available/default
 
 # Install MySQL client
-RUN apt-get update \
-    && apt-get install -y default-mysql-client \
+RUN apt-get install -y default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 COPY start.sh /start.sh
