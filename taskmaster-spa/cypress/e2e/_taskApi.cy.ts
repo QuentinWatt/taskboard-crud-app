@@ -1,6 +1,6 @@
 describe('it can reach the back end', () => {
   const apiUrl = Cypress.env('apiUrl')
-  const defaultUser = Cypress.env('defaultUser');
+  const {email, password} = Cypress.env('defaultUser');
 
   it('can make a request to the laravel app.', () => {
     cy.request(`${apiUrl}api/test`).then((response) => {
@@ -14,7 +14,8 @@ describe('it can reach the back end', () => {
       method: "POST",
       url: `${apiUrl}api/auth/login`,
       body: {
-        ...defaultUser
+        email,
+        password,
       }
     }).then((response) => {
       expect(response.status).to.eq(201);
