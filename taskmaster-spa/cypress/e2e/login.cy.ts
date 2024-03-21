@@ -1,5 +1,5 @@
 describe('it has a login page', () => {
-  const baseUrl = Cypress.config('baseUrl')
+  const baseUrl:string = Cypress.config('baseUrl') ?? ''
 
   it('Should redirect to /login if not authenticated', () => {
     cy.visit(baseUrl); 
