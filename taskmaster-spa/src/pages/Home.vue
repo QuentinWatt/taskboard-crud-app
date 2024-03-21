@@ -15,7 +15,7 @@
 
 <template>
   <div class="container mx-auto py-5 px-3">
-    <h1 class="text-2xl font-bold">Your Boards</h1>
+    <h1 class="text-2xl font-bold" data-cy="heading">Your Boards</h1>
 
     <CreateBoardForm class="mt-3"/>
 
