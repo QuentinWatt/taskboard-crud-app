@@ -9,11 +9,5 @@ export default defineConfig({
         password: "password"
       }
     },
-    setupNodeEvents(on, config) {
-      config.env.apiUrl =
-        process.env.VITE_APP_API_URL
-
-      return config
-    },
   },
 });
