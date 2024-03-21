@@ -35,6 +35,7 @@ RUN apt-get install -y default-mysql-client \
     && rm -rf /var/lib/apt/lists/*
 
 COPY start.sh /start.sh
+COPY .env.example .env
 
 COPY . /var/www/html
 WORKDIR /var/www/html

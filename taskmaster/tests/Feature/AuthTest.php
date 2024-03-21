@@ -41,4 +41,20 @@ class AuthTest extends TestCase
                 'message' => 'User created.'
             ]);
     }
+
+    public function testAUserCanLogin(): void
+    {
+        $response = $this->postJson('/api/auth/login', [
+            'email' => 'user@taskmaster.test',
+            'password' => 'password',
+        ]);
+
+        $response->assertStatus(201)
+            ->assertJsonStructure([
+                'data' => [
+                    'token',
+                    'user',
+                ]
+            ]);
+    }
 }
