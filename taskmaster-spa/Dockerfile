@@ -10,8 +10,6 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm install
 
-COPY .env.example .env 
-
 COPY . .
 
 EXPOSE 8081
