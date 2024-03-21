@@ -18,7 +18,8 @@ describe('it can reach the back end', () => {
         password,
       },
       headers:{
-        Accept: 'appliction/json'
+        "accept": 'appliction/json',
+        "content-type": 'application/json'
       }
     }).then((response) => {
       expect(response.status).to.eq(201);
