@@ -19,7 +19,7 @@
 
     <CreateBoardForm class="mt-3"/>
 
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-5">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-5" data-cy="boards-list">
       <div v-for="board in boards" class="h-full">
         <BoardCard :key="board.id" :board="board"/>
       </div>

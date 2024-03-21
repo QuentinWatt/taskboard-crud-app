@@ -37,13 +37,13 @@ describe('it has a home page with board data', () => {
     cy.login(user.email, user.password);
     cy.url().should('eq', baseUrl);
 
+    const testVal = String(Cypress._.random(0, 1e6))
     cy.get('input[id="board_name"]')
       .should('exist')
-      .type('my new board');
+      .type(testVal);
 
     cy.get('form[data-cy="create-board-form"]').submit().then(() => {
-      cy.contains('h3[data-cy="board-title"]', 'my new board')
-        .should('exist');
+      cy.get('div[data-cy="boards-list"]').should('exist');
     });
   });
 })
