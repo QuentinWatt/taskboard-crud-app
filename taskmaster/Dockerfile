@@ -1,4 +1,4 @@
-FROM ubuntu:latest AS base
+FROM ubuntu:23.10 AS base
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -6,7 +6,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt update
 RUN apt install -y software-properties-common
 RUN add-apt-repository -y ppa:ondrej/php
-RUN apt update
 RUN apt install -y php8.2\
   php8.2-cli\
   php8.2-common\
@@ -30,6 +29,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install nginx
 RUN apt install -y nginx
 COPY nginx.conf /etc/nginx/sites-available/default
+
+# Install MySQL client
+RUN apt-get install -y default-mysql-client \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY start.sh /start.sh
 

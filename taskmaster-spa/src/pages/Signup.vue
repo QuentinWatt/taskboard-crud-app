@@ -37,6 +37,7 @@
     <form 
       @submit.prevent="signup"
       class="mt-5"
+      data-cy="sign-up-form"
     >
       <div 
         v-if="signupStore.errors.message" 

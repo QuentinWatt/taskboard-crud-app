@@ -18,16 +18,23 @@ jobs:
         image: docker:stable
         options: --privileged
         ports:
+          - 8081:8081
           - 8000:80
           - 3307:3306
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: taskmaster
           MYSQL_USER: root
+          VITE_APP_API_URL: http://laravel_app
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+
+      - name: Create environmnet files
+        run: |
+          cp taskmaster/.env.example taskmaster/.env
+          cp taskmaster-spa/.env.example taskmaster-spa/.env
 
       - name: Build and run Docker Compose
         run: |
@@ -38,7 +45,18 @@ jobs:
         run: docker ps -a
 
       - name: Run Laravel migrations
-        run: docker exec laravel_app php artisan migrate --force
+        run: |
+          docker exec laravel_app php artisan migrate --force
+          docker exec laravel_app php artisan db:seed
 
       - name: Run Laravel tests
         run: docker exec laravel_app php artisan test
+
+      - name: Front End can call a curl to the Back End
+        run: docker compose exec vue3_spa curl http://laravel_app/api/test
+
+      - name: Front End can call a curl to the Back End
+        run: 'docker compose exec vue3_spa curl -X POST -H "accept: application/json" -H "content-type: application/json" -d ''{"email": "user@taskmaster.test", "password": "password"}'' http://laravel_app/api/auth/login'
+
+      - name: Run e2e tests
+        run: docker exec vue3_spa pnpm cypress:run

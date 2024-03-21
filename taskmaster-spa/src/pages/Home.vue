@@ -15,13 +15,11 @@
 
 <template>
   <div class="container mx-auto py-5 px-3">
-    <h1 class="text-2xl font-bold">
-      Your Boards
-    </h1>
+    <h1 class="text-2xl font-bold">Your Boards</h1>
 
     <CreateBoardForm class="mt-3"/>
 
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-5">
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-5" data-cy="boards-list">
       <div v-for="board in boards" class="h-full">
         <BoardCard :key="board.id" :board="board"/>
       </div>

@@ -1,18 +1,24 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\Auth\LoginController;
 use App\Http\Controllers\Api\v1\Auth\LogoutController;
 use App\Http\Controllers\Api\v1\Auth\SignupController;
 use App\Http\Controllers\Api\v1\Boards\ShowBoardController;
-use App\Http\Controllers\Api\v1\Boards\ShowBoardsController;
 use App\Http\Controllers\Api\v1\Auth\ShowAuthUserController;
+use App\Http\Controllers\Api\v1\Boards\ShowBoardsController;
 use App\Http\Controllers\Api\v1\Boards\CreateBoardController;
 use App\Http\Controllers\Api\v1\Boards\DeleteBoardController;
+use App\Http\Controllers\Api\v1\Tasks\ShowBoardTasksController;
 use App\Http\Controllers\Api\v1\Tasks\CreateBoardTaskController;
 use App\Http\Controllers\Api\v1\Tasks\DeleteBoardTaskController;
-use App\Http\Controllers\Api\v1\Tasks\ShowBoardTasksController;
 use App\Http\Controllers\Api\v1\Tasks\UpdateBoardTaskController;
-use Illuminate\Support\Facades\Route;
+
+Route::get('/test', function() {
+    return response()->json([
+        'message' => 'up'
+    ]);
+});
 
 Route::prefix('/auth')->group(function () {
     Route::post('/signup', SignupController::class);

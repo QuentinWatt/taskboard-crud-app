@@ -7,7 +7,12 @@ services:
       context: ./taskmaster-spa
       dockerfile: Dockerfile
     ports:
-      - "8081:8081" 
+      - "8081:8081"
+    depends_on:
+      - taskmaster_db
+      - laravel_app
+    environment:
+      - VITE_APP_API_URL=laravel_app
     networks:
       - app_network
 
