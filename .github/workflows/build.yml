@@ -45,7 +45,9 @@ jobs:
         run: docker ps -a
 
       - name: Run Laravel migrations
-        run: docker exec laravel_app php artisan migrate --force
+        run: |
+          docker exec laravel_app php artisan migrate --force
+          docker exec laravel_app php artisan db:seed
 
       - name: Run Laravel tests
         run: docker exec laravel_app php artisan test
