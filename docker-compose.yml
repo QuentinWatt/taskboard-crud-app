@@ -32,6 +32,8 @@ services:
       DB_PORT: 3306
       DB_PASSWORD: password
       DB_DATABASE: taskmaster
+    volumes:
+      - ./taskmaster:/var/www/html
     networks:
       - app_network
 
