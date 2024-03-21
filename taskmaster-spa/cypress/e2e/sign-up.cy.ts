@@ -1,5 +1,5 @@
 describe('It has a sign-up page', () => {
-  const baseUrl = Cypress.config('baseUrl')
+  const baseUrl: string = Cypress.config('baseUrl') ?? ''
 
   it('It has the correct h1 and sign up form', () => {
     cy.visit(`${baseUrl}sign-up`); 

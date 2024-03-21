@@ -1,5 +1,5 @@
 describe('it can reach the back end', () => {
-  const apiUrl = Cypress.env('apiUrl')
+  const apiUrl = import.meta.env.VITE_APP_API_URL
   const {email, password} = Cypress.env('defaultUser');
 
   it('can make a request to the laravel app.', () => {

@@ -1,6 +1,6 @@
 describe('it has a home page with board data', () => {  
-  const baseUrl = Cypress.config('baseUrl')
-  const user = Cypress.env('defaultUser')
+  const baseUrl: string = Cypress.config('baseUrl') ?? ''
+  const user: {email: string, password: string} = Cypress.env('defaultUser')
 
   it('Should redirect to /login if not authenticated', () => {
     cy.visit(baseUrl); 
