@@ -12,7 +12,10 @@
 </script>
 
 <template>
-  <form @submit.prevent="logout">
-    <button>Logout</button>
+  <form 
+    @submit.prevent="logout"
+    data-cy="logout-form"
+  >
+    <button data-cy="logout-button">Logout</button>
   </form>
 </template>
