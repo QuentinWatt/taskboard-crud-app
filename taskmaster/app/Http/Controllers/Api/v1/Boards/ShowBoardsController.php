@@ -13,7 +13,7 @@ class ShowBoardsController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $boards = $request->user()->boards()->paginate(10);
+        $boards = $request->user()->boards()->latest()->paginate(10);
 
         return new BoardResourceCollection($boards);
     }
