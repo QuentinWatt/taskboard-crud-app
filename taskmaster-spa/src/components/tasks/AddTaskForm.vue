@@ -31,6 +31,7 @@
     @submit="addTask" 
     class="border rounded p-2 flex items-center"
     :class="state.error.length > 0 ? 'error': ''"
+    data-cy="add-task-form"
   >
     <div class="mr-3">
       <input  

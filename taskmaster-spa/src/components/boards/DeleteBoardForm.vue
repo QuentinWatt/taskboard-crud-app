@@ -28,7 +28,7 @@
 </script>
 
 <template>
-  <form @submit.prevent="deleteBoard">
+  <form @submit.prevent="deleteBoard" data-cy="delete-board-form">
     <button 
       type="submit"
       class="button bg-red-500 hover:bg-red-600 text-white"
