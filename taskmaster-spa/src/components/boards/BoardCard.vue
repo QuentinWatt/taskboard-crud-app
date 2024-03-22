@@ -11,7 +11,8 @@
 <template>
   <div
     data-cy="board-card" 
-    class="border rounded-md px-3 py-3 bg-white h-full flex flex-col justify-between">
+    class="border rounded-md px-3 py-3 bg-white h-full flex flex-col justify-between"
+  >
     <h3 data-cy="board-title">
       {{ props.board.name }}
     </h3>
