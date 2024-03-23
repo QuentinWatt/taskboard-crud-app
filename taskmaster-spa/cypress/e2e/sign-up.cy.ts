@@ -26,4 +26,21 @@ describe("It has a sign-up page", () => {
         expect(element.html()).contains("p", "The password field is required.");
       });
   });
+
+  it("User can sign up", () => {
+    cy.get('a[href="/sign-up"]').click();
+
+    const uniqueName = String("User " + Cypress._.random(0, 1e6));
+    const uniqueEmail = String(
+      "user+" + Cypress._.random(0, 1e6) + "@taskmaster.test"
+    );
+    cy.get('form[data-cy="sign-up-form"]');
+    cy.get("#name").type(uniqueName).should("have.value", uniqueName);
+    cy.get("#email").type(uniqueEmail).should("have.value", uniqueEmail);
+    cy.get('input[type="password"]')
+      .type("password")
+      .should("have.value", "password");
+    cy.get('form[data-cy="sign-up-form"]').submit();
+    cy.url().should("eq", `${baseUrl}login`);
+  });
 });
