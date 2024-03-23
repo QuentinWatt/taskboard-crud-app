@@ -6,8 +6,8 @@ export default defineConfig({
     env: {
       defaultUser: {
         email: "user@taskmaster.test",
-        password: "password"
-      }
+        password: "password",
+      },
     },
   },
 });
