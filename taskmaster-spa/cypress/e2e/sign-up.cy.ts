@@ -29,9 +29,7 @@ describe("It has a sign-up page", () => {
 
   it("User can sign up and login", () => {
     cy.get('a[href="/sign-up"]').click();
-    cy.intercept("POST", `http://localhost:8000/api/auth/signup`).as(
-      "signUpRequest"
-    );
+    cy.intercept("POST", "/api/auth/signup").as("signUpRequest");
 
     const uniqueName = String("User " + Cypress._.random(0, 1e6));
     const uniqueEmail = String(
