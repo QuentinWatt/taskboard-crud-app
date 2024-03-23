@@ -4,11 +4,11 @@ export default defineConfig({
   e2e: {
     baseUrl: "http://localhost:8081/",
     env: {
-      apiUrl: "http://laravel_app/",
+      apiUrl: "http://localhost:8000/",
       defaultUser: {
         email: "user@taskmaster.test",
-        password: "password"
-      }
+        password: "password",
+      },
     },
   },
 });
