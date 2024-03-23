@@ -27,7 +27,6 @@ describe('Manages tasks on the board', () => {
 
     cy.wait('@createdTaskRequest').then((interception) => {
       expect(interception.response?.statusCode).to.eq(201)
-
       cy.get('div.task input[type="text"]').each(($input) => {
         cy.wrap($input).invoke('val').then((value) => {
           if (value === 'Test task ' + testVal) {
