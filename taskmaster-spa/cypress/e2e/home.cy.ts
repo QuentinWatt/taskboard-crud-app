@@ -40,7 +40,7 @@ describe('It has a home page with board data', () => {
   it('Can create a new board', () => {
     cy.intercept('POST', '/api/board/new').as('createBoard');
 
-    const testVal = String(Cypress._.random(0, 1e6))
+    const testVal = String('New board: '+Cypress._.random(0, 1e6))
     cy.get('input[id="board_name"]').should('exist').type(testVal);
 
     cy.get('form[data-cy="create-board-form"]').submit();
