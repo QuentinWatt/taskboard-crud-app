@@ -27,6 +27,7 @@ describe('Manages tasks on the board', () => {
 
     cy.wait('@createdTaskRequest').then((interception) => {
       expect(interception.response?.statusCode).to.eq(201)
+
       cy.get('div.task input[type="text"]').each(($input) => {
         cy.wrap($input).invoke('val').then((value) => {
           if (value === 'Test task ' + testVal) {
@@ -43,5 +44,21 @@ describe('Manages tasks on the board', () => {
     cy.get('div.task').first().should('exist').as('task')
     cy.get('@task').find('button').click();
     cy.get('@task').should('not.exist')
+  })
+
+  it('Can delete a board', () => {
+    cy.url().should('match', /\/board\/\d+/);
+    cy.get('form[data-cy="delete-board-form"]').should('exist')
+
+    cy.get('form[data-cy="delete-board-form"] button[type="submit"]')
+      .should('exist')
+      .then($deleteButton => {
+      expect($deleteButton.html()).to.contain('Delete Board');
+
+      cy.wrap($deleteButton).click().then(() => {
+        cy.url().should('not.match', /\/board\/\d+/)
+        cy.url().should('eq', Cypress.config('baseUrl'))
+      })
+    });
   })
 })
