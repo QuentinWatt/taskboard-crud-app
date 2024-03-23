@@ -27,8 +27,11 @@ describe("It has a sign-up page", () => {
       });
   });
 
-  it("User can sign up", () => {
+  it("User can sign up and login", () => {
     cy.get('a[href="/sign-up"]').click();
+    cy.intercept("POST", `http://localhost:8000/api/auth/signup`).as(
+      "signUpRequest"
+    );
 
     const uniqueName = String("User " + Cypress._.random(0, 1e6));
     const uniqueEmail = String(
@@ -41,6 +44,12 @@ describe("It has a sign-up page", () => {
       .type("password")
       .should("have.value", "password");
     cy.get('form[data-cy="sign-up-form"]').submit();
-    cy.url().should("eq", `${baseUrl}login`);
+
+    cy.wait("@signUpRequest").then((interception) => {
+      expect(interception.response?.statusCode).to.eq(201);
+      cy.url().should("eq", `${baseUrl}login`);
+    });
+    cy.login(uniqueEmail, "password");
+    cy.url().should("eq", baseUrl);
   });
 });
