@@ -16,6 +16,7 @@
     state.loading = true
     await boardsStore.createBoard(state.name)
     state.loading = false
+    state.name = ''
   }
 </script>
 
