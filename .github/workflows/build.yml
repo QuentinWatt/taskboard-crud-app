@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Test Docker Compose
+    name: E2E Test environment
     runs-on: ubuntu-latest
 
     services:
