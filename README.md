@@ -1,49 +1,49 @@
 # CRUD Task Board Application
 
-This application was originally written as part of a job assessment. The assessment spec is written blow.
+This application was originally written as part of a job assessment. The assessment spec is written [here](./spec.md).
 
-## Task: Laravel + Vue.js Assessment Spec
+## Skills showcased in this project
 
-Using Laravel and VueJS, build a single page application and API that has both user registration and authentication component, the authentication needs to make use of Laravel Sanctum Tokens.
-
-Create a task list CRUD component for the single page application. The component should consist of the following:
-
-- List Tasks
-- View Task
-- Create Task
-- Update Task
-- Delete Task
-
-Tasks should belong to the user that is logged in. Be sure to implement proper authorisation between users and tasks so that tasks can only be managed by the user to whom they belong.
-
-Unit tests that cover the user and task management functionality are required.
-
-Your knowledge of the following components will be assessed:
-
-**Laravel**
-
-- Routing
-- Middleware
-- Controllers
-- Models
-- Repositories
-- Database Seeders
-- Migrations
-- Form Requests
-- Authorisation
-
-**PHPUnit**
-
-- Unit testing
-
-**VueJS**
-
-- Routing
-- Pinia state management
+- Docker & Docker Compose
+- Laravel PHP & PHPUnit testing
+  - RESTful API design
+  - Database Design
+- Vue 3 and Pinia
+  - State Machines
 - Axios
+  - Http requests
+- Cypress e2e testing
 
-**Bonus Points**
+## Installation instructions
 
-- CI/CD
-- Dockerfile
-- Docker Compose
+1. Clone this repository and CD into the directory
+
+```bash
+git clone https://github.com/QuentinWatt/taskboard-crud-app.git task-app
+
+cd task-app
+```
+
+2. Copy the environment files for the Back End and the Front End.
+
+```bash
+cp taskmaster/.env.example taskmaster/.env
+cp taskmaster-spa/.env.example taskmaster-spa/.env
+```
+
+3. Start the docker containers
+
+```bash
+docker compose up -d
+```
+
+4. Run the migrations
+
+```bash
+docker exec laravel_app php artisan migrate --force
+docker exec laravel_app php artisan db:seed
+```
+
+5. Check the Docker Desktop app. You should now have 3 containers running. The projects should be accessable at these ports.
+   - Laravel Back End: http://localhost:8000
+   - Vue3 Front End: http://localhost:8081
